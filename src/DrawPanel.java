@@ -13,50 +13,25 @@ import javax.swing.*;
  */
 public class DrawPanel extends JPanel{
 
-
-    List<BufferedImage> objectImages;
-
-    List<Point> objectPoints;
-
-    void moveit(int x, int y, int indexOfCar){
-        Point p = objectPoints.get(indexOfCar);
-        p.x = x;
-        p.y = y;
-    }
+    private CarModel carM;
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, java.util.List<Vehicle> cars) {
+    public DrawPanel(int x, int y, CarModel cm) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        objectImages = new ArrayList<>();
-        objectPoints = new ArrayList<>();
-
-        for (Vehicle car: cars) {
-            Point p = new Point((int) car.getXCoordinate(), (int) car.getYCoordinate());
-            objectPoints.add(p);
-        }
-
-        // Print an error message in case file is not found with a try/catch block
-       for (Vehicle car : cars) {
-           try{
-               objectImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+car.getModelName()+".jpg")));
-           }catch (IOException ex)
-           {
-               ex.printStackTrace();
-           }
-       }
-
+        this.carM = cm;
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        List<BufferedImage> images = carM.getObjectImages();
 
-        for (int i = 0; i < objectImages.size(); i++) {
-            BufferedImage component = objectImages.get(i);
-            g.drawImage(component, objectPoints.get(i).x, objectPoints.get(i).y, null);
+        for (int i = 0; i < images.size(); i++) {
+            BufferedImage component = images.get(i);
+            g.drawImage(component, carM.getObjectPoints().get(i).x, carM.getObjectPoints().get(i).y, null);
         }
     }
 }

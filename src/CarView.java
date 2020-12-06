@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  * It communicates with the Controller by calling methods of it when an action fires of in
  * each of it's components.
  **/
-public class CarView extends JFrame{
+public class CarView extends JFrame implements RefreshObserver {
     private static final int X = 800;
     private static final int Y = 800;
 
@@ -38,9 +38,9 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
+    public CarView(String framename, CarController cc, CarModel cm){
         this.carC = cc;
-        drawPanel = new DrawPanel(X, Y-240, carC.cars);
+        drawPanel = new DrawPanel(X, Y-240, cm);
         initComponents(framename);
     }
 
@@ -121,7 +121,7 @@ public class CarView extends JFrame{
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { carC.liftBed(10); }
+            public void actionPerformed(ActionEvent e) { carC.liftBed(); }
 
         });
 
@@ -139,7 +139,7 @@ public class CarView extends JFrame{
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { carC.lowerBed(5); }
+            public void actionPerformed(ActionEvent e) { carC.lowerBed(); }
 
         });
 
@@ -154,5 +154,10 @@ public class CarView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void refreshWhenNotified() {
+        drawPanel.repaint();
     }
 }
