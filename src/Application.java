@@ -4,10 +4,16 @@ import java.awt.event.ActionListener;
 
 public class Application {
     public static void main(String[] args) {
-        // Instance of this class
         CarModel cm = new CarModel();
         CarController cc = new CarController(cm);
         CarView cv = new CarView("CarSim 2.0", cc, cm);
+
+        for (Vehicle car : cm.getCars()) {
+            CarViewLabel cvl = new CarViewLabel(car);
+            cv.add(cvl);
+            cm.addObserver(cvl);
+        }
+
         cm.addObserver(cv);
 
         // The delay (ms) corresponds to 20 updates a sec (hz)

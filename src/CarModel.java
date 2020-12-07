@@ -54,14 +54,23 @@ public class CarModel {
         p.y = y;
     }
 
-    // TODO: Fix so that it doesnt return original list
+
     public List<BufferedImage> getObjectImages() {
-        return objectImages;
+        List<BufferedImage> listToReturn = new ArrayList<>();
+        for (BufferedImage image : objectImages)
+            listToReturn.add(image);
+        return listToReturn;
     }
-    // TODO: Fix so that it doesnt return original list
+
     public List<Point> getObjectPoints() {
-        return objectPoints;
+        List<Point> listToReturn = new ArrayList<>();
+        for (Point p : objectPoints) {
+            Point returnP = new Point(p);
+            listToReturn.add(returnP);
+        }
+        return listToReturn;
     }
+
 
     public void addObserver(RefreshObserver newObserver) {
         this.observers.add(newObserver);
@@ -153,5 +162,7 @@ public class CarModel {
     }
 
 
-
+    public List<Vehicle> getCars() {
+        return cars;
+    }
 }

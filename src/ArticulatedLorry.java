@@ -27,8 +27,7 @@ public class ArticulatedLorry extends Truck {
 
     /** Method that sets the loaded objects' positions to the same as the transporter in a 2D-Coordinate system*/
     private void giveLoadedCarSamePosition(Car loadedCar) {
-        loadedCar.setXCoordinate(this.getXCoordinate());
-        loadedCar.setYCoordinate(this.getYCoordinate());
+        loadedCar.changePosition(this.getPosition().getX(), this.getPosition().getY());
     }
 
     /** Method that returns the amount of objects loaded in the {@code Transporter} object's list.*/
@@ -61,8 +60,7 @@ public class ArticulatedLorry extends Truck {
     /** Method that changes the position of the {@code Car} object entered as a argument away from the {@code ArticulatedLorry} in a 2D-Coordinate system.
      * @param unloadedCar */
     private void moveCarAwayFromTransportAfterUnload(Car unloadedCar) {
-        unloadedCar.setXCoordinate(this.getXCoordinate() - 2);
-        unloadedCar.setYCoordinate(this.getYCoordinate() + 2);
+        unloadedCar.changePosition(this.getPosition().getX() -2 , this.getPosition().getY() +2);
     }
 
     /** Method that unloads a number of objects defined by argument {@code nrOfCarsToUnload}, removes that amount of objects from list.
@@ -94,18 +92,10 @@ public class ArticulatedLorry extends Truck {
      * in the {@code Transporter} object to the same coordinates in a 2D-Coordinate system.*/
     @Override
     public void move() {
-        if (direction == NORTH)
-            this.setYCoordinate(this.getYCoordinate() + getCurrentSpeed());
-        else if (direction == EAST)
-            this.setXCoordinate(this.getXCoordinate() + getCurrentSpeed());
-        else if (direction == SOUTH)
-            this.setYCoordinate(this.getYCoordinate() - getCurrentSpeed());
-        else
-            this.setXCoordinate(this.getXCoordinate() - getCurrentSpeed());
-
+        super.move();
 
         for (Car loadedCar: parentTransporter.getTransportedEntities()) {
-            loadedCar.changePosition(this.getXCoordinate(), this.getYCoordinate());
+            loadedCar.changePosition(this.getPosition());
         }
 
     }

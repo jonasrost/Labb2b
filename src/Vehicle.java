@@ -17,9 +17,10 @@ public abstract class Vehicle implements Movable {
     protected String modelName;
 
     /*** The start x coordinate of the car */
-    private double xCord;
+    //private double xCord;
     /*** The start y coordinate of the car */
-    private double yCord;
+    //private double yCord;
+    private DoublePoint position;
 
     /*** Initializes the start direction of the car */
     protected int direction = EAST;
@@ -36,8 +37,9 @@ public abstract class Vehicle implements Movable {
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-        this.xCord = xCord;
-        this.yCord = yCord;
+        this.position = new DoublePoint(xCord,yCord);
+        //this.xCord = xCord;
+        //this.yCord = yCord;
         stopEngine();
 
         // Fills the arrays with values corresponding to a correct left respective right turn,
@@ -150,13 +152,13 @@ public abstract class Vehicle implements Movable {
      */
     public void move() {
         if (direction == NORTH)
-            yCord = yCord - currentSpeed;
+            position.translate(0,-currentSpeed);
         else if (direction == EAST)
-            xCord = xCord + currentSpeed;
+            position.translate(currentSpeed,0);
         else if (direction == SOUTH)
-            yCord = yCord + currentSpeed;
+            position.translate(0,currentSpeed);
         else
-            xCord = xCord - currentSpeed;
+            position.translate(-currentSpeed,0);
     }
 
     /***
@@ -186,7 +188,7 @@ public abstract class Vehicle implements Movable {
      * @return the value of xCord
      */
     public double getXCoordinate(){
-        return this.xCord;
+        return position.getX();
     }
 
     /***
@@ -194,25 +196,12 @@ public abstract class Vehicle implements Movable {
      * @return the value of yCord
      */
     public double getYCoordinate(){
-        return this.yCord;
+        return position.getY();
     }
 
-    /***
-     * Change the x coordinate of the cars position
-     * @param newX the new x coordinate
-     */
-    protected void setXCoordinate(double newX) {
-        this.xCord = newX;
+    public DoublePoint getPosition() {
+        return position.getLocation();
     }
-
-    /***
-     * Change the y coordinate of the cars position
-     * @param newY the new y coordinate
-     */
-    protected void setYCoordinate(double newY) {
-        this.yCord = newY;
-    }
-
 
     /***
      * Chenges both the x and y coordinate of the car
@@ -220,8 +209,11 @@ public abstract class Vehicle implements Movable {
      * @param y new y coordinate
      */
     public void changePosition(double x, double y) {
-        this.setXCoordinate(x);
-        this.setYCoordinate(y);
+        this.position.setLocation(x,y);
+    }
+
+    public void changePosition(DoublePoint newLoc) {
+        this.position.setLocation(newLoc);
     }
 
 }
