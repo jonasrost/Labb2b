@@ -1,3 +1,6 @@
+import turbostate.TurboOff;
+import turbostate.TurboOn;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -136,14 +139,14 @@ public class CarModel {
     void turboOn() {
         for (Vehicle car : cars) {
             if (checkIfVehicleCorrectClass(car, Saab95.class))
-                ((Saab95) car).setTurboOn();
+                ((Saab95) car).setTurboState(new TurboOn());
         }
     }
 
     void turboOff() {
         for (Vehicle car : cars) {
             if (checkIfVehicleCorrectClass(car, Saab95.class))
-                ((Saab95) car).setTurboOff();
+                ((Saab95) car).setTurboState(new TurboOff());
         }
     }
 
@@ -160,8 +163,7 @@ public class CarModel {
                 ((Scania) car).decreaseAngleOfTruckBedTo(5);
         }
     }
-
-
+    
     public List<Vehicle> getCars() {
         return cars;
     }

@@ -16,7 +16,7 @@ public class CarViewLabel extends JPanel implements RefreshObserver{
         label = (new JLabel(assignedVehicle.getModelName() +":" +Double.toString(assignedVehicle.getCurrentSpeed())));
     }
 
-    public void updateLabel() {
+    private void updateLabel() {
         label.setText(assignedVehicle.getModelName() +":" +Double.toString(assignedVehicle.getCurrentSpeed()));
     }
 

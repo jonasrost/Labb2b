@@ -1,3 +1,6 @@
+import turbostate.TurboOff;
+import turbostate.TurboState;
+
 import java.awt.*;
 
 /***
@@ -6,38 +9,22 @@ import java.awt.*;
 public class Saab95 extends Car {
 
     /*** Keeps track of if the turbo is on or not */
-    private boolean turboOn;
+    private TurboState turboState;
 
     /***
      * Constructor of the class that calls upon the constructor in 'Car'.
      */
     public Saab95(){
         super(2, 125, Color.red, "Saab95", 0, 160);
-        turboOn = false;
+        turboState = new TurboOff();
     }
 
     /***
-     * Sets turboOn to true.
+     * Change if the turbo is on or off
+     * @param newState new state of the turbo, either on or off
      */
-    public void setTurboOn(){
-        turboOn = true;
-    }
-
-    /***
-     * Sets turboOn to false.
-     */
-    public void setTurboOff(){
-        turboOn = false;
-    }
-
-    /***
-     * Returns the speed factor of the Saab95
-     * @return the speed factor of the Saab95
-     */
-    private double speedFactor(){
-        double turbo = 1;
-        if(turboOn) turbo = 1.3;
-        return getEnginePower() * 0.01 * turbo;
+    public void setTurboState(TurboState newState) {
+        this.turboState = newState;
     }
 
     /***
@@ -47,7 +34,7 @@ public class Saab95 extends Car {
      */
     @Override
     protected void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
+        currentSpeed = turboState.stateIncrementSpeed(getCurrentSpeed(),amount,getEnginePower());
     }
 
     /***
@@ -57,6 +44,8 @@ public class Saab95 extends Car {
      */
     @Override
     protected void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+        currentSpeed = turboState.stateDecrementSpeed(getCurrentSpeed(),amount);
     }
+
+
 }
