@@ -7,14 +7,10 @@ public class Application {
         CarModel cm = new CarModel();
         CarController cc = new CarController(cm);
         CarView cv = new CarView("CarSim 2.0", cc, cm);
-
-        for (Vehicle car : cm.getCars()) {
-            CarViewLabel cvl = new CarViewLabel(car);
-            cv.add(cvl);
-            cm.addObserver(cvl);
-        }
-
         cm.addObserver(cv);
+        CarViewSpeedometer cvs = new CarViewSpeedometer(cm);
+        cv.add(cvs);
+        cm.addObserver(cvs);
 
         // The delay (ms) corresponds to 20 updates a sec (hz)
         final int delay = 50;
