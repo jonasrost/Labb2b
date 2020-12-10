@@ -16,31 +16,34 @@ public class CarView extends JFrame implements RefreshObserver {
     private static final int Y = 800;
 
     // The controller member
-    CarController carC;
+    private CarController carC;
 
-    DrawPanel drawPanel;
+    private DrawPanel drawPanel;
 
-    JPanel controlPanel = new JPanel();
+    private JPanel controlPanel = new JPanel();
 
-    JPanel gasPanel = new JPanel();
-    JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
-    JLabel gasLabel = new JLabel("Amount of gas");
+    private VehicleAddOrRemovePanel addOrRemovePanel;
 
-    JButton gasButton = new JButton("Gas");
-    JButton brakeButton = new JButton("Brake");
-    JButton turboOnButton = new JButton("Saab Turbo on");
-    JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
+    private JPanel gasPanel = new JPanel();
+    private JSpinner gasSpinner = new JSpinner();
+    private int gasAmount = 0;
+    private JLabel gasLabel = new JLabel("Amount of gas");
 
-    JButton startButton = new JButton("Start all cars");
-    JButton stopButton = new JButton("Stop all cars");
+    private JButton gasButton = new JButton("Gas");
+    private JButton brakeButton = new JButton("Brake");
+    private JButton turboOnButton = new JButton("Saab Turbo on");
+    private JButton turboOffButton = new JButton("Saab Turbo off");
+    private JButton liftBedButton = new JButton("Scania Lift Bed");
+    private JButton lowerBedButton = new JButton("Lower Lift Bed");
+
+    private JButton startButton = new JButton("Start all cars");
+    private JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
     public CarView(String framename, CarController cc, CarModel cm){
         this.carC = cc;
         drawPanel = new DrawPanel(X, Y-240, cm);
+        addOrRemovePanel = new VehicleAddOrRemovePanel(cc);
         initComponents(framename);
     }
 
@@ -53,7 +56,7 @@ public class CarView extends JFrame implements RefreshObserver {
 
         this.add(drawPanel);
 
-
+        this.add(addOrRemovePanel);
 
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value

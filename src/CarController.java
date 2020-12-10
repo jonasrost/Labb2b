@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class CarController {
     // member fields:
 
-    CarModel carM;
+    private CarModel carM;
 
     public CarController(CarModel cm) {
         this.carM = cm;
@@ -54,5 +54,13 @@ public class CarController {
 
     void lowerBed() {
         carM.lowerBed();
+    }
+
+    void addVehicle() {
+        carM.addVehicle();
+    }
+
+    void removeVehicle() {
+        carM.removeVehicle();
     }
 }

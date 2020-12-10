@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Tester {
     @Test
     public void testGetNumberOfDoorsVolvoOK() {
-        Volvo240 volvo = new Volvo240();
+        Volvo240 volvo = new Volvo240(0,0);
 
         int nrDoors = volvo.getNrDoors();
 
@@ -14,7 +14,7 @@ public class Tester {
 
     @Test
     public void testGetNumberOfDoorsSaabOK() {
-        Saab95 saab = new Saab95();
+        Saab95 saab = new Saab95(0,0);
 
         int nrDoors = saab.getNrDoors();
 
@@ -23,7 +23,7 @@ public class Tester {
 
     @Test
     public void testMoveOK() {
-        Saab95 saab = new Saab95();
+        Saab95 saab = new Saab95(0,0);
         double speedBefore = saab.getCurrentSpeed();
         saab.gas(0.7);
         double currSpeed = saab.getCurrentSpeed();
@@ -35,7 +35,7 @@ public class Tester {
 
     @Test
     public void testChangeSpeedWhileTruckBedLiftedNotOk() {
-        Scania scania = new Scania();
+        Scania scania = new Scania(0,0);
         scania.increaseAngleOfTruckBed(50);
         scania.gas(0.5);
         assertTrue(scania.getCurrentSpeed() == 0);
@@ -43,17 +43,17 @@ public class Tester {
 
     @Test
     public void testChangeTruckBedAngleToNegativeValueNotOK() {
-        Scania scania = new Scania();
+        Scania scania = new Scania(0,0);
         scania.decreaseAngleOfTruckBedTo(-4);
         assertTrue(scania.getCurrentAngleOfTruckBed() == 0);
     }
 
     @Test
     public void loadAndUnloadCarsFromLorryOk() {
-        ArticulatedLorry testLorry = new ArticulatedLorry();
-        Saab95 saab = new Saab95();
-        Saab95 saab2 = new Saab95();
-        Volvo240 volvo = new Volvo240();
+        ArticulatedLorry testLorry = new ArticulatedLorry(0,0);
+        Saab95 saab = new Saab95(0,0);
+        Saab95 saab2 = new Saab95(0,0);
+        Volvo240 volvo = new Volvo240(0,0);
 
         testLorry.setDownRamp();
         testLorry.loadCarOnLorry(saab);
@@ -66,8 +66,8 @@ public class Tester {
 
     @Test
     public void testMoveLorryOK() {
-        ArticulatedLorry testLorry = new ArticulatedLorry();
-        Saab95 saab = new Saab95();
+        ArticulatedLorry testLorry = new ArticulatedLorry(0,0);
+        Saab95 saab = new Saab95(0,0);
 
         testLorry.setDownRamp();
         testLorry.loadCarOnLorry(saab);
@@ -84,9 +84,9 @@ public class Tester {
     @Test
     public void loadAndUnloadCarsFromFerryOK() {
         CarFerry testFerry = new CarFerry();
-        Saab95 saab = new Saab95();
-        Saab95 saab2 = new Saab95();
-        Volvo240 volvo = new Volvo240();
+        Saab95 saab = new Saab95(0,0);
+        Saab95 saab2 = new Saab95(0,0);
+        Volvo240 volvo = new Volvo240(0,0);
 
         testFerry.loadCarOnFerry(saab);
         testFerry.loadCarOnFerry(saab2);
@@ -103,8 +103,8 @@ public class Tester {
     @Test
     public void testWorkshopCanNotAddDuplicateOK() {
         Workshop<Car> carWorkshop = new Workshop<>(10);
-        Saab95 saab = new Saab95();
-        Volvo240 volvo = new Volvo240();
+        Saab95 saab = new Saab95(0,0);
+        Volvo240 volvo = new Volvo240(0,0);
 
         carWorkshop.putVehicleInWorkshop(saab);
         carWorkshop.putVehicleInWorkshop(volvo);

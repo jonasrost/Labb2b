@@ -12,10 +12,10 @@ public class Saab95 extends Car {
     private TurboState turboState;
 
     /***
-     * Constructor of the class that calls upon the constructor in 'Car'.
+     * Constructor of the class that calls upon the constructor in 'Car'. 160
      */
-    public Saab95(){
-        super(2, 125, Color.red, "Saab95", 0, 160);
+    public Saab95(double xCoordinate, double yCoordinate){
+        super(2, 125, Color.red, "Saab95", xCoordinate, yCoordinate);
         turboState = new TurboOff();
     }
 

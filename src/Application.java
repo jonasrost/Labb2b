@@ -11,6 +11,8 @@ public class Application {
         CarViewSpeedometer cvs = new CarViewSpeedometer(cm);
         cv.add(cvs);
         cm.addObserver(cvs);
+        //VehicleAddOrRemovePanel vaor = new VehicleAddOrRemovePanel(cc);
+        //cv.add(vaor);
 
         // The delay (ms) corresponds to 20 updates a sec (hz)
         final int delay = 50;

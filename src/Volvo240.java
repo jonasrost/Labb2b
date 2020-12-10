@@ -11,8 +11,8 @@ public class Volvo240 extends Car {
     /***
      * Constructor of the class that calls upon the constructor in 'Car'.
      */
-    public Volvo240(){
-        super(4, 100, Color.black, "Volvo240", 0, 0);
+    public Volvo240(double xCoordinate, double yCoordinate){
+        super(4, 100, Color.black, "Volvo240", xCoordinate, yCoordinate);
     }
 
     /***

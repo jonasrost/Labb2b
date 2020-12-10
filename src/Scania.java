@@ -10,10 +10,10 @@ public class Scania extends Truck{
     private int truckBedAngle;
 
     /***
-     * Constructor of the class that calls upon the constructor in 'Truck'.
+     * Constructor of the class that calls upon the constructor in 'Truck'. 320
      */
-    public Scania() {
-        super(2, 400, Color.white, "Scania", 0, 320);
+    public Scania(double xCoordinate, double yCoordinate) {
+        super(2, 400, Color.white, "Scania", xCoordinate, yCoordinate);
         this.truckBedAngle = 0;
     }
 

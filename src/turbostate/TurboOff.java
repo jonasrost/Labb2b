@@ -2,7 +2,7 @@ package turbostate;
 
 public class TurboOff implements TurboState{
 
-    private final double factor = 125 * 0.01;
+    private static final double factor = 125 * 0.01;
 
     @Override
     public double stateIncrementSpeed(double currentSpeed, double amount, double enginePower) {

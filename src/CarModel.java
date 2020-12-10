@@ -28,9 +28,9 @@ public class CarModel {
     }
 
     private void initCars() {
-        this.cars.add(new Volvo240());
-        this.cars.add(new Scania());
-        this.cars.add(new Saab95());
+        this.cars.add(VehicleFactory.createVolvo240(0,0));
+        this.cars.add(VehicleFactory.createSaab95(0, 160));
+        this.cars.add(VehicleFactory.createScania(0, 320));
     }
 
     private void initObjectPoints() {
@@ -40,14 +40,18 @@ public class CarModel {
         }
     }
 
+    void addImage(String modelName) {
+        try{
+            this.objectImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+modelName+".jpg")));
+        }catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
     private void initObjectImages() {
         for (Vehicle car : this.cars) {
-            try{
-                this.objectImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/"+car.getModelName()+".jpg")));
-            }catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
+            addImage(car.getModelName());
         }
     }
 
@@ -57,6 +61,13 @@ public class CarModel {
         p.y = y;
     }
 
+    public List<Vehicle> getCars() {
+        List<Vehicle> listToReturn = new ArrayList<>();
+        for (Vehicle car : cars) {
+            listToReturn.add(car); //Kan inte skapa en exakt kopia av en godtycklig bil. Därav denna lösning
+        }
+        return listToReturn;
+    }
 
     public List<BufferedImage> getObjectImages() {
         List<BufferedImage> listToReturn = new ArrayList<>();
@@ -163,8 +174,24 @@ public class CarModel {
                 ((Scania) car).decreaseAngleOfTruckBedTo(5);
         }
     }
-    
-    public List<Vehicle> getCars() {
-        return cars;
+
+    void addVehicle() {
+        if (this.cars.size() < 10) {
+            double xCord = Math.random() * 500;
+            double yCord = Math.random() * 300;
+            this.cars.add(new Volvo240(xCord, yCord));
+            this.objectPoints.add(new Point((int) xCord, (int) yCord));
+            this.addImage("Volvo240");
+        } else {
+            System.out.println("Can't add more Vehicles");
+        }
+    }
+
+    void removeVehicle() {
+        if (cars.size() > 0) {
+            this.objectPoints.remove(0);
+            this.objectImages.remove(0);
+            this.cars.remove(0);
+        }
     }
 }
