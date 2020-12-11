@@ -3,7 +3,7 @@ import java.awt.*;
 /***
  * Class that represents a Scania truck, which is a subclass to 'Truck'.
  */
-public class Scania extends Truck{
+public class Scania extends Vehicle{
     /***
      * The angle of the Scania trucks truck bed.
      */

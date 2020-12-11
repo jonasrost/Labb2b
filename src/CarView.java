@@ -15,7 +15,6 @@ public class CarView extends JFrame implements RefreshObserver {
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
     private CarController carC;
 
     private DrawPanel drawPanel;

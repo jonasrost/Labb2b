@@ -16,10 +16,7 @@ public abstract class Vehicle implements Movable {
     /*** The car model name */
     protected String modelName;
 
-    /*** The start x coordinate of the car */
-    //private double xCord;
-    /*** The start y coordinate of the car */
-    //private double yCord;
+    /*** The position of the car */
     private DoublePoint position;
 
     /*** Initializes the start direction of the car */
@@ -38,8 +35,6 @@ public abstract class Vehicle implements Movable {
         this.color = color;
         this.modelName = modelName;
         this.position = new DoublePoint(xCord,yCord);
-        //this.xCord = xCord;
-        //this.yCord = yCord;
         stopEngine();
 
         // Fills the arrays with values corresponding to a correct left respective right turn,

@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 /** A class that has the functionality of a transporter by having a {@code Transporter} object as a variable. */
-public class ArticulatedLorry extends Truck {
+public class ArticulatedLorry extends Vehicle {
     /** Declaration of a {@code Transporter} variable that when initiated contains functionality of a transporter. */
     private Transporter<Car> parentTransporter;
     /** Boolean variable if Lorry has ramp lifted or not.*/
